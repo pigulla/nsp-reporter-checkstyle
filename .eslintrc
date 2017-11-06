@@ -1,0 +1,16 @@
+{
+    "extends": "eslint-config-four66",
+
+    "parserOptions": {
+        "sourceType": "module"
+    },
+
+    "env": {
+        "node": true
+    },
+
+    "rules": {
+        // We want to support Node.js down to version 0.10, which knows nothing about Buffer.from()
+        "no-buffer-constructor": "off"
+    }
+}

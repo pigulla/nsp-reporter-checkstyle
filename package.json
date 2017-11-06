@@ -1,0 +1,56 @@
+{
+  "name": "nsp-reporter-checkstyle",
+  "version": "1.0.0",
+  "description": "Checkstyle-compatible reporter for the Node Security Project",
+  "main": "dist/src/reporter.js",
+  "engines": {
+    "node": ">=0.10"
+  },
+  "scripts": {
+    "test": "npm run test-dist",
+    "test-dist": "npm run prepare-compile && npm run compile && npm run mocha-dist && npm run nsp",
+    "test-local": "npm run lint && npm run mocha-local && npm run nsp",
+    "lint": "eslint .",
+    "nsp": "nsp check",
+    "mocha-local": "mocha --recursive test/\\*\\*/\\*.spec.js",
+    "mocha-dist": "mocha --recursive dist/test/\\*\\*/\\*.spec.js",
+    "prepare-compile": "rm -rf dist/ && mkdir -p dist/src/ && mkdir -p dist/test",
+    "compile": "babel --out-dir dist/src/ src/ && babel --copy-files --out-dir dist/test/ test/",
+    "prepublishOnly": "npm run lint && npm run mocha-local && npm run nsp && npm run prepare-compile && npm run compile && npm run mocha-dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pigulla/nsp-reporter-checkstyle.git"
+  },
+  "keywords": [
+    "nsp",
+    "reporter",
+    "checkstyle"
+  ],
+  "author": {
+    "name": "Raphael Pigulla",
+    "email": "pigulla@four66.com"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pigulla/nsp-reporter-checkstyle/issues"
+  },
+  "files": [
+    "dist/"
+  ],
+  "homepage": "https://github.com/pigulla/nsp-reporter-checkstyle#readme",
+  "dependencies": {
+    "checkstyle-formatter": "^1.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "eslint": "^4.10.0",
+    "eslint-config-four66": "^4.10.0",
+    "mocha": "^4.0.1",
+    "nsp": "^3.0.0",
+    "rewire": "^2.5.2"
+  }
+}
