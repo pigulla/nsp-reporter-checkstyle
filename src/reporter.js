@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 
+const path = require('path');
 const { format } = require('util');
 const checkstyle = require('checkstyle-formatter');
 
@@ -29,7 +30,7 @@ module.exports.check = {
 
         const xml = checkstyle([
             {
-                filename: args.path,
+                filename: path.join(args.path, 'package.json'),
                 messages
             }
         ]);

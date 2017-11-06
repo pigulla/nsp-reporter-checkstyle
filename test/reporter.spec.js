@@ -39,7 +39,7 @@ describe('reporter', function () {
             const file = path.join(__dirname, 'fixtures', 'findings.xml');
             const expected = fs.readFileSync(file).toString();
 
-            reporter.check.success(findings, { path: 'package.json' });
+            reporter.check.success(findings, { path: '/some/absolute/path' });
 
             expect(console_mock.stdout).to.equal(expected);
         });
@@ -48,7 +48,7 @@ describe('reporter', function () {
             const file = path.join(__dirname, 'fixtures', 'findings.empty.xml');
             const expected = fs.readFileSync(file).toString();
 
-            reporter.check.success(no_findings, { path: 'package.json' });
+            reporter.check.success(no_findings, { path: '/some/absolute/path' });
 
             expect(console_mock.stdout).to.equal(expected);
         });
