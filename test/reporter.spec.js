@@ -8,8 +8,9 @@ const expect = require('chai').expect;
 const reporter = rewire(path.join(source_dir, 'reporter'));
 
 const findings = require('./fixtures/findings.json');
+const no_findings = require('./fixtures/findings.json');
 
-const consoleMock = {
+const console_mock = {
     stdout: '',
     stderr: '',
     error(msg) {
@@ -24,27 +25,38 @@ describe('reporter', function () {
     let revert;
 
     beforeEach(function () {
-        consoleMock.stdout = '';
-        consoleMock.stderr = '';
-        revert = reporter.__set__('console', consoleMock);
+        console_mock.stdout = '';
+        console_mock.stderr = '';
+        revert = reporter.__set__('console', console_mock);
     });
 
     afterEach(function () {
         revert();
     });
 
-    it('creates correct XML', function () {
-        const file = path.join(__dirname, 'fixtures', 'findings.xml');
-        const expected = fs.readFileSync(file).toString();
+    describe('creates correct XML', function () {
+        it('when issues are found', function () {
+            const file = path.join(__dirname, 'fixtures', 'findings.xml');
+            const expected = fs.readFileSync(file).toString();
 
-        reporter.check.success(findings, { path: 'package.json' });
+            reporter.check.success(findings, { path: 'package.json' });
 
-        expect(consoleMock.stdout).to.equal(expected);
+            expect(console_mock.stdout).to.equal(expected);
+        });
+
+        it('when no issues were found', function () {
+            const file = path.join(__dirname, 'fixtures', 'findings.empty.xml');
+            const expected = fs.readFileSync(file).toString();
+
+            reporter.check.success(no_findings, { path: 'package.json' });
+
+            expect(console_mock.stdout).to.equal(expected);
+        });
     });
 
     it('prints debug output on error', function () {
         reporter.error(new Error('Some nasty error'));
 
-        expect(consoleMock.stderr).to.equal('Error: Some nasty error');
+        expect(console_mock.stderr).to.equal('Error: Some nasty error');
     });
 });

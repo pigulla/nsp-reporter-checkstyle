@@ -1,0 +1,22 @@
+{
+    "meta": {
+        "statusCode": 200,
+        "headers": {
+            "cache-control": "no-cache",
+            "content-type": "application/json; charset=utf-8",
+            "date": "Mon, 06 Nov 2017 16:50:01 GMT",
+            "strict-transport-security": "max-age=15768000",
+            "vary": "origin,accept-encoding",
+            "x-content-type-options": "nosniff",
+            "x-download-options": "noopen",
+            "x-frame-options": "DENY",
+            "x-nsp-request-id": "1509987000639:api-4034157750-bbazl:18:j8ytnyek:43291",
+            "x-xss-protection": "1; mode=block",
+            "connection": "close",
+            "transfer-encoding": "chunked"
+        }
+    },
+    "data": [
+    ],
+    "message": "No vulnerabilities found"
+}
