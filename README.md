@@ -10,3 +10,7 @@
 > Checkstyle-compatible reporter for the Node Security Project (nsp)
 
 See the [nsp](https://github.com/nodesecurity/nsp) website for more information.
+
+### Note
+
+This is the reporter for `nsp@3`. For earlier versions see [nsp-formatter-checkstyle](https://github.com/pigulla/nsp-formatter-checkstyle).
