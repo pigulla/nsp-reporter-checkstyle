@@ -4,7 +4,7 @@
   "description": "Checkstyle-compatible reporter for the Node Security Project",
   "main": "dist/src/reporter.js",
   "engines": {
-    "node": ">=0.10"
+    "node": ">=6.0"
   },
   "scripts": {
     "test": "npm run test-dist",
