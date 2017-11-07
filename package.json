@@ -15,7 +15,7 @@
     "mocha-local": "mocha --recursive test/\\*\\*/\\*.spec.js",
     "mocha-dist": "mocha --recursive dist/test/\\*\\*/\\*.spec.js",
     "prepare-compile": "rm -rf dist/ && mkdir -p dist/src/ && mkdir -p dist/test",
-    "compile": "babel --out-dir dist/src/ src/ && babel --copy-files --out-dir dist/test/ test/",
+    "compile": "babel --no-comments --out-dir dist/src/ src/ && babel --copy-files --out-dir dist/test/ test/",
     "prepublishOnly": "npm run lint && npm run mocha-local && npm run nsp && npm run prepare-compile && npm run compile && npm run mocha-dist"
   },
   "repository": {
