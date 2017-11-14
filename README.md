@@ -7,6 +7,8 @@
 
 # nsp-reporter-checkstyle
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/pigulla/nsp-reporter-checkstyle.svg)](https://greenkeeper.io/)
+
 > Checkstyle-compatible reporter for the Node Security Project (nsp)
 
 See the [nsp](https://github.com/nodesecurity/nsp) website for more information.

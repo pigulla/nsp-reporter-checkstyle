@@ -51,6 +51,6 @@
     "eslint-config-four66": "^4.10.0",
     "mocha": "^4.0.1",
     "nsp": "^3.0.0",
-    "rewire": "^2.5.2"
+    "rewire": "^3.0.0"
   }
 }
