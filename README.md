@@ -1,3 +1,8 @@
+![no maintenance intended](https://img.shields.io/badge/%E2%A8%89-no%20maintenance%20intended-red.svg?style=flat-square)
+### This module is no longer maintained.
+
+-----
+
 [![npm](https://img.shields.io/npm/v/nsp-reporter-checkstyle.svg)](https://www.npmjs.com/package/nsp-reporter-checkstyle)
 [![Travis CI](https://img.shields.io/travis/pigulla/nsp-reporter-checkstyle/master.svg)](https://travis-ci.org/pigulla/nsp-reporter-checkstyle)
 [![Greenkeeper badge](https://badges.greenkeeper.io/pigulla/nsp-reporter-checkstyle.svg)](https://greenkeeper.io/)
